@@ -2047,7 +2047,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &477457045
 Transform:
   m_ObjectHideFlags: 0
@@ -2088,7 +2088,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.014829636, y: -0.008614063}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2099,7 +2099,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 37.966557, y: 21.98944}
+  m_Size: {x: 38, y: 22}
   m_EdgeRadius: 0
 --- !u!1 &486023423
 GameObject:
@@ -2782,12 +2782,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42ecf5ade06fc04e983e978ab17a863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NHabitaciones: 0
+  Habitaciones: []
+  "C\xE1maras": []
+  NHabitaciones: 4
   Dimensiones: 14
+  "IDHabitaci\xF3n": 0
   Textura1: {fileID: 11400000, guid: abe9370c58435f244a894542a9d0f78d, type: 2}
   MapaBase: {fileID: 1849634727}
   Muro: {fileID: 0}
   SueloRandom: []
+  AdministradorH: {fileID: 1338112943}
+  AdministradorCam: {fileID: 1370101295}
 --- !u!4 &1032308099
 Transform:
   m_ObjectHideFlags: 0
@@ -10371,7 +10376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2116157147
 Transform:
   m_ObjectHideFlags: 0
@@ -10412,7 +10417,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.014829636, y: -0.008614063}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10423,5 +10428,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 37.966557, y: 21.98944}
+  m_Size: {x: 38, y: 22}
   m_EdgeRadius: 0
