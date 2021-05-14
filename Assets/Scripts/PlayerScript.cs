@@ -39,8 +39,11 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 m = new Vector2(Direction.x, Direction.y) * Time.deltaTime;
-        transform.Translate(m*speed, Space.World);
+        if (attacking == false)
+        {
+            Vector2 m = new Vector2(Direction.x, Direction.y) * Time.deltaTime;
+            transform.Translate(m * speed, Space.World);
+        }
 
 
         AttackDir = PlayerInputs.PlayerMov.Attack.ReadValue<Vector2>();

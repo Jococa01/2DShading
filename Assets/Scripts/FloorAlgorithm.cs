@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Linq;
 
 public class FloorAlgorithm : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class FloorAlgorithm : MonoBehaviour
     public List<GameObject> Habitaciones = new List<GameObject>();
     public List<GameObject> Cámaras = new List<GameObject>();
     public List<Vector3> HPosiciones = new List<Vector3>();
+    public List<int> DireccionesVetadas = new List<int>();
 
     public int NHabitaciones, Dimensiones, IDHabitación;
     public Tile Textura1;
@@ -125,6 +127,7 @@ public class FloorAlgorithm : MonoBehaviour
     {
         GameObject[] HArray = Habitaciones.ToArray();
         GameObject[] CArray = Cámaras.ToArray();
+        HPosiciones.Add(Vector3.zero);
         for (int n =0; n < HArray.Length; n++)
         {
             if (n == 0)
@@ -133,10 +136,11 @@ public class FloorAlgorithm : MonoBehaviour
             }
             else if(n > 0)
             {
-                int RandomCoord = Random.Range(1, 5);
+                int index = RandomInt();
+                Debug.Log(index);
                 Vector3 RelativePos = Vector3.zero;
 
-                switch (RandomCoord)
+                switch (index)
                 {
                     case 1:
                         RelativePos = new Vector3(HArray[n - 1].transform.position.x + 38, HArray[n - 1].transform.position.y, 0);
@@ -155,32 +159,28 @@ public class FloorAlgorithm : MonoBehaviour
                         break;
                     case 4:
                         RelativePos = new Vector3(HArray[n - 1].transform.position.x, HArray[n - 1].transform.position.y - 22, 0);
-                        CordenadaID = 4;
                         Debug.Log("Sur con coords en " + RelativePos);
+                        CordenadaID = 4;
+
                         break;
                     default:
                         Debug.Log("Valor imposible");
                         break;
                 }
 
+                HArray[n].transform.position = RelativePos;
                 HPosiciones.Add(HArray[n].transform.position);
                 Vector3[] PosiArray = HPosiciones.ToArray();
-
-                //for(int np =0; np < PosiArray.Length; np++)
-                //{
-
-                //}
 
                 foreach(Vector3 hp in PosiArray)
                 {
                     if (hp == HArray[n].transform.position)
                     {
                         Debug.Log("Repetido");
-                        HArray[n].transform.position = RelativePos;
                     }
-                    else
+                    else if(hp != HArray[n].transform.position)
                     {
-                        HArray[n].transform.position = RelativePos;
+                        Debug.Log("Nueva Posición");
                     }
                 }
             }
@@ -190,6 +190,22 @@ public class FloorAlgorithm : MonoBehaviour
     }
 
     void RandomDir()
+    {
+
+    }
+
+    public int RandomInt()
+    {
+        //Cambiar esta wea por el Sistema de multiples reintentos en 1 frame, es una mierda pero es lo que hay || Mirar si se pueden quitar X int de un array de ints
+
+        var exclude = new HashSet<int>(DireccionesVetadas);
+        var CustomRange = Enumerable.Range(1, 5).Where(i => !exclude.Contains(i));
+
+        var RandomCoord = new System.Random();
+        int index = RandomCoord.Next(1, 4);
+        return CustomRange.ElementAt(index);
+    }
+    public void NewDirection()
     {
 
     }
