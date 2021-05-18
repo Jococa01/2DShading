@@ -22,6 +22,7 @@ public class FloorAlgorithm : MonoBehaviour
     [Header("Parámetros modificables en Editor")]
     [Range(1, 8)]
     public int NHabitaciones;
+    public int Altura, Anchura;
 
     [Header("Parámetros del minimapa")]
     public Sprite MinimapSprite;
@@ -40,7 +41,7 @@ public class FloorAlgorithm : MonoBehaviour
 
         Relocate();
         MinimapIcons();
-        GenerarMuro();
+        //GenerarMuro();
     }
 
     void GenerarBase()
@@ -78,14 +79,14 @@ public class FloorAlgorithm : MonoBehaviour
         Camobj.tag = "Floor";
 
         Camobj.GetComponent<RoomDetection>().RoomNumber = IDHabitación;
-        Camobj.GetComponent<BoxCollider2D>().size = new Vector2(38, 22);
+        Camobj.GetComponent<BoxCollider2D>().size = new Vector2(Anchura, Altura);
         Camobj.GetComponent<BoxCollider2D>().isTrigger=true;
 
         Camobj.transform.parent = AdministradorCam.transform;
         Cámaras.Add(Camobj);
 
 
-        int Ygen = Dimensiones / 2;
+        int Ygen = Dimensiones-6;
 
         //Generaión del espacio en el 1er cuadrante
         for (int y = 0; y < Ygen; y++)
@@ -158,22 +159,22 @@ public class FloorAlgorithm : MonoBehaviour
                 switch (index)
                 {
                     case 1:
-                        RelativePos = new Vector3(HArray[n - 1].transform.position.x + 38, HArray[n - 1].transform.position.y, 0);
+                        RelativePos = new Vector3(HArray[n - 1].transform.position.x + Anchura, HArray[n - 1].transform.position.y, 0);
                         Debug.Log("Este con coords en " + RelativePos);
                         CordenadaID = 1;
                         break;
                     case 2:
-                        RelativePos = new Vector3(HArray[n - 1].transform.position.x - 38, HArray[n - 1].transform.position.y, 0);
+                        RelativePos = new Vector3(HArray[n - 1].transform.position.x - Anchura, HArray[n - 1].transform.position.y, 0);
                         Debug.Log("Oeste con coords en " + RelativePos);
                         CordenadaID = 2;
                         break;
                     case 3:
-                        RelativePos = new Vector3(HArray[n - 1].transform.position.x, HArray[n - 1].transform.position.y + 22, 0);
+                        RelativePos = new Vector3(HArray[n - 1].transform.position.x, HArray[n - 1].transform.position.y + Altura, 0);
                         Debug.Log("Norte con coords en " + RelativePos);
                         CordenadaID = 3;
                         break;
                     case 4:
-                        RelativePos = new Vector3(HArray[n - 1].transform.position.x, HArray[n - 1].transform.position.y - 22, 0);
+                        RelativePos = new Vector3(HArray[n - 1].transform.position.x, HArray[n - 1].transform.position.y - Altura, 0);
                         Debug.Log("Sur con coords en " + RelativePos);
                         CordenadaID = 4;
 

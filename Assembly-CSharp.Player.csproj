@@ -58,11 +58,12 @@
     <Compile Include="Assets\Cainos\Pixel Art Top Down - Basic\Script\CameraFollow.cs" />
     <Compile Include="Assets\Cainos\Pixel Art Top Down - Basic\Script\PropsAltar.cs" />
     <Compile Include="Assets\Cainos\Pixel Art Top Down - Basic\Script\TopDownCharacterController.cs" />
+    <Compile Include="Assets\Scripts\FloorAlgorithm.cs" />
     <Compile Include="Assets\Cainos\Pixel Art Top Down - Basic\Script\LayerTrigger.cs" />
     <Compile Include="Assets\Scripts\RoomDetection.cs" />
     <Compile Include="Assets\Scripts\PlayerScript.cs" />
     <Compile Include="Assets\Inputs\Player.cs" />
-    <Compile Include="Assets\Scripts\FloorAlgorithm.cs" />
+    <Compile Include="Assets\Scripts\WallSimulation.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Cainos\Pixel Art Top Down - Basic\Changelog.txt" />

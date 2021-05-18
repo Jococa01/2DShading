@@ -15,8 +15,10 @@ public class RoomChanger : MonoBehaviour
         foreach(Transform child in transform.GetComponentsInChildren<Transform>())
         {
             Rooms.Add(child);
+            child.gameObject.AddComponent<WallSimulation>();
         }
         Rooms.Remove(transform);
+        Destroy(GetComponent<WallSimulation>());
     }
 
     // Update is called once per frame

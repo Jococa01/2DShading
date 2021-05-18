@@ -2093,7 +2093,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477457044}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2897,7 +2897,7 @@ MonoBehaviour:
   "C\xE1maras": []
   HPosiciones: []
   DireccionesVetadas: 
-  Dimensiones: 14
+  Dimensiones: 16
   "IDHabitaci\xF3n": 0
   HierbaBase: {fileID: 11400000, guid: eee8bc3d204826d448d889c59fb3113f, type: 2}
   Muro_d: {fileID: 11400000, guid: 5b602ba12c7e9f549814c7a653bcfef0, type: 2}
@@ -2911,6 +2911,8 @@ MonoBehaviour:
   AdministradorCam: {fileID: 1370101295}
   CordenadaID: 0
   NHabitaciones: 8
+  Altura: 20
+  Anchura: 36
   MinimapSprite: {fileID: 21300000, guid: 5dc9f127908ae4e408639cd40ae47158, type: 3}
   UnlitMat: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   RoomHeight: 325
@@ -3264,7 +3266,7 @@ Transform:
   - {fileID: 477457045}
   - {fileID: 2116157147}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1370101297
 MonoBehaviour:
@@ -3550,7 +3552,7 @@ Transform:
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1431239449
 MonoBehaviour:
@@ -10940,7 +10942,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2116157146}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
