@@ -20,7 +20,7 @@ public class PlayerScript : MonoBehaviour
     public bool attacking;
 
     public float dashspeed;
-    public bool candash=true;
+    public bool candash=true, dashing=false;
 
     public CinemachineVirtualCamera virtualCamera;
     public Volume Volume;
@@ -42,7 +42,11 @@ public class PlayerScript : MonoBehaviour
         if (attacking == false)
         {
             Vector2 m = new Vector2(Direction.x, Direction.y) * Time.deltaTime;
-            transform.Translate(m * speed, Space.World);
+            if (dashing == false)
+            {
+                rb.velocity = m * speed;
+            }
+            //rb.AddForce(m * speed);
         }
 
 
@@ -148,12 +152,14 @@ public class PlayerScript : MonoBehaviour
     IEnumerator Dashdelay()
     {
         candash = false;
+        dashing = true;
         rb.velocity = Vector2.zero;
         rb.velocity = Direction * dashspeed;
         virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 2;
         yield return new WaitForSeconds(.1f);
         virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
         rb.velocity = Vector2.zero;
+        dashing = false;
         yield return new WaitForSeconds(1f);
         candash = true;
     }

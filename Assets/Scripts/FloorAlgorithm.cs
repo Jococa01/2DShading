@@ -13,7 +13,7 @@ public class FloorAlgorithm : MonoBehaviour
     public List<int> DireccionesVetadas = new List<int>();
 
     public int Dimensiones, IDHabitación;
-    public Tile HierbaBase, Muro_d, Muro_U, Muro_R, Muro_L;
+    public Tile HierbaBase, Muro_d, Muro_U, Muro_R, Muro_L, Muro_Blank;
     public Tilemap MapaBase, Muro;
     public Tile[] SueloRandom;
     public GameObject AdministradorH, AdministradorCam;
