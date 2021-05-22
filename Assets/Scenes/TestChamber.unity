@@ -20,12 +20,12 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -1791,7 +1791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6ad9dd8a5c0544581dd70899a90052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 900
+  speed: 400
   rb: {fileID: 0}
   RoomChanger: {fileID: 1370101297}
   Proyectile: {fileID: 1431239445}
@@ -2329,7 +2329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &555535986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2827,8 +2827,9 @@ MonoBehaviour:
   "C\xE1maras": []
   HPosiciones: []
   DireccionesVetadas: 
-  Dimensiones: 16
   "IDHabitaci\xF3n": 0
+  Dimensiones: 15
+  Ygen: 9
   HierbaBase: {fileID: 11400000, guid: eee8bc3d204826d448d889c59fb3113f, type: 2}
   Muro_d: {fileID: 11400000, guid: 5b602ba12c7e9f549814c7a653bcfef0, type: 2}
   Muro_U: {fileID: 11400000, guid: 3d35099f1d0e93843a022a7b4fc9ecab, type: 2}
@@ -2846,9 +2847,14 @@ MonoBehaviour:
   Anchura: 36
   MinimapSprite: {fileID: 21300000, guid: 5dc9f127908ae4e408639cd40ae47158, type: 3}
   UnlitMat: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
-  RoomHeight: 325
-  RoomWidth: 675
+  RoomHeight: 450
+  RoomWidth: 800
   DoorDirections: []
+  SalaNorte: []
+  SalaSur: []
+  SalaEste: []
+  SalaOeste: []
+  HabitacionesDeMuros: []
 --- !u!4 &1032308099
 Transform:
   m_ObjectHideFlags: 0
@@ -10707,7 +10713,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.58
-  m_Color: {r: 0.105945155, g: 0.25125912, b: 0.2924528, a: 1}
+  m_Color: {r: 0.44086865, g: 0.5766228, b: 0.6037736, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0.1
   m_ApplyToSortingLayers: 00000000

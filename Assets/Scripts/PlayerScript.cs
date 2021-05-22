@@ -39,17 +39,6 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (attacking == false)
-        {
-            Vector2 m = new Vector2(Direction.x, Direction.y) * Time.deltaTime;
-            if (dashing == false)
-            {
-                rb.velocity = m * speed;
-            }
-            //rb.AddForce(m * speed);
-        }
-
-
         AttackDir = PlayerInputs.PlayerMov.Attack.ReadValue<Vector2>();
 
         animator.SetFloat("Xdir", Direction.x);
@@ -77,6 +66,19 @@ public class PlayerScript : MonoBehaviour
         {
             animator.SetBool("Idle", false);
             animator.SetBool("Move", true);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (attacking == false)
+        {
+            Vector2 m = new Vector2(Direction.x, Direction.y) * Time.deltaTime;
+            if (dashing == false)
+            {
+                rb.velocity = m * speed;
+            }
+            //rb.AddForce(m * speed);
         }
     }
 

@@ -12,7 +12,14 @@ public class FloorAlgorithm : MonoBehaviour
     public List<Vector3> HPosiciones = new List<Vector3>();
     public List<int> DireccionesVetadas = new List<int>();
 
-    public int Dimensiones, IDHabitación;
+    public int IDHabitación;
+
+    [Range(1, 18)]
+    public int Dimensiones;
+
+    [Range(1, 10)]
+    public int Ygen;
+
     public Tile HierbaBase, Muro_d, Muro_U, Muro_R, Muro_L, Muro_Blank;
     public Tilemap MapaBase, Muro;
     public Tile[] SueloRandom;
@@ -32,6 +39,15 @@ public class FloorAlgorithm : MonoBehaviour
     [Header("Generación de Muros")]
     public List<Vector3> DoorDirections = new List<Vector3>();
 
+    [Header("Generación de Puertas")]
+
+    public List<Vector3> SalaNorte = new List<Vector3>();
+    public List<Vector3> SalaSur = new List<Vector3>();
+    public List<Vector3> SalaEste = new List<Vector3>();
+    public List<Vector3> SalaOeste = new List<Vector3>();
+
+    public List<Transform> HabitacionesDeMuros = new List<Transform>();
+
     void Start()
     {
         for(int n=0; n<NHabitaciones; n++)
@@ -42,6 +58,7 @@ public class FloorAlgorithm : MonoBehaviour
         Relocate();
         MinimapIcons();
         //GenerarMuro();
+        StartCoroutine(LateStart());
     }
 
     void GenerarBase()
@@ -86,7 +103,6 @@ public class FloorAlgorithm : MonoBehaviour
         Cámaras.Add(Camobj);
 
 
-        int Ygen = Dimensiones-6;
 
         //Generaión del espacio en el 1er cuadrante
         for (int y = 0; y < Ygen; y++)
@@ -319,6 +335,94 @@ public class FloorAlgorithm : MonoBehaviour
         }
     }
 
+    public void GenerarPuertas()
+    {
+        GameObject[] HArray = Habitaciones.ToArray();
+
+        foreach (Transform child in AdministradorCam.transform.GetComponentsInChildren<Transform>())
+        {
+            if (child.gameObject.name != "paco")
+            {
+                HabitacionesDeMuros.Add(child);
+            }
+            HabitacionesDeMuros.Remove(AdministradorCam.transform);
+        }
+
+        Transform[] PosicionesDeMuros = HabitacionesDeMuros.ToArray();
+
+        for (int n = 0; n < HArray.Length; n++)
+        {
+            foreach (GameObject sala in HArray)
+            {
+                //Si tiene sala contigua al norte
+                if (sala.transform.position.y - HArray[n].transform.position.y == Altura && sala.transform.position.x - HArray[n].transform.position.x == 0)
+                {
+                    SalaNorte.Add(HArray[n].transform.position);
+                    Debug.Log("Sala al norte");
+                }
+                //Si tiene sala contigua al sur
+                if (sala.transform.position.y - HArray[n].transform.position.y == -Altura && sala.transform.position.x - HArray[n].transform.position.x == 0)
+                {
+                    SalaSur.Add(HArray[n].transform.position);
+                    Debug.Log("Sala al sur");
+                }
+                //Si tiene sala contigua al este
+                if (sala.transform.position.y - HArray[n].transform.position.y == 0 && sala.transform.position.x - HArray[n].transform.position.x == Anchura)
+                {
+                    SalaEste.Add(HArray[n].transform.position);
+                    Debug.Log("Sala al este");
+                }
+                //Si tiene sala contigua al oeste
+                if (sala.transform.position.y - HArray[n].transform.position.y == 0 && sala.transform.position.x - HArray[n].transform.position.x == -Anchura)
+                {
+                    SalaOeste.Add(HArray[n].transform.position);
+                    Debug.Log("Sala al oeste");
+                }
+            }
+        }
+
+        SalaNorte = SalaNorte.Distinct().ToList();
+        SalaSur = SalaSur.Distinct().ToList();
+        SalaEste = SalaEste.Distinct().ToList();
+        SalaOeste = SalaOeste.Distinct().ToList();
+
+        for (int nh = 0; nh < HArray.Length; nh++)
+        {
+            foreach (Vector3 puertanorte in SalaNorte)
+            {
+                if (HArray[nh].transform.position == puertanorte)
+                {
+                    Debug.Log("Se creará una puerta al norte de la sala " + nh);
+                    PosicionesDeMuros[nh].gameObject.GetComponent<WallSimulation>().Norte = true;
+                }
+            }
+            foreach (Vector3 puertassur in SalaSur)
+            {
+                if (HArray[nh].transform.position == puertassur)
+                {
+                    Debug.Log("Se creará una puerta al sur de la sala " + nh);
+                    PosicionesDeMuros[nh].gameObject.GetComponent<WallSimulation>().Sur = true;
+                }
+            }
+            foreach (Vector3 puertaeste in SalaEste)
+            {
+                if (HArray[nh].transform.position == puertaeste)
+                {
+                    Debug.Log("Se creará una puerta al este de la sala " + nh);
+                    PosicionesDeMuros[nh].gameObject.GetComponent<WallSimulation>().Este = true;
+                }
+            }
+            foreach (Vector3 puertaoeste in SalaOeste)
+            {
+                if (HArray[nh].transform.position == puertaoeste)
+                {
+                    Debug.Log("Se creará una puerta al oeste de la sala " + nh);
+                    PosicionesDeMuros[nh].gameObject.GetComponent<WallSimulation>().Oeste = true;
+                }
+            }
+        }
+    }
+
     public void MinimapIcons()
     {
         for(int n=0; n<Habitaciones.ToArray().Length; n++)
@@ -335,5 +439,11 @@ public class FloorAlgorithm : MonoBehaviour
             Icon.transform.position = HPosiciones[n];
             Icon.name = "Icon";
         }
+    }
+
+    IEnumerator LateStart()
+    {
+        yield return new WaitForSeconds(.1f);
+        GenerarPuertas();
     }
 }
